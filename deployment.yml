@@ -21,11 +21,5 @@ spec:
       - image: mck-gx-aims-dev-docker.jfrog.io/user-service:latest
         name: api-gateway
         imagePullPolicy: Always
-        resources:
-          limits:
-            memory: 1Gi
-          requests:
-            cpu: 2000m
-            memory: 1Gi
         ports:
         - containerPort: 8080

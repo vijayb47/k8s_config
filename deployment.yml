@@ -5,7 +5,7 @@ metadata:
   labels:
     app: api-gateway
   name: api-gateway
-  namespace: spring-petclinic
+  namespace: p2pcloudops-dev
 spec:
   replicas: 1
   selector:
@@ -18,7 +18,7 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - image: harbor.pgottam-demo.live/devregistry/api-gateway:latest
+      - image: mck-gx-aims-dev-docker.jfrog.io/user-service:latest
         name: api-gateway
         imagePullPolicy: Always
         livenessProbe:
@@ -42,11 +42,6 @@ spec:
           requests:
             cpu: 2000m
             memory: 1Gi
-        env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: kubernetes
-        - name: MANAGEMENT_METRICS_EXPORT_WAVEFRONT_URI
-          value: proxy://wavefront-proxy.spring-petclinic.svc.cluster.local:2878
         ports:
         - containerPort: 8080
       restartPolicy: Always

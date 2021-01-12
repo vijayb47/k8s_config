@@ -44,5 +44,3 @@ spec:
             memory: 1Gi
         ports:
         - containerPort: 8080
-      restartPolicy: Always
-status: {}

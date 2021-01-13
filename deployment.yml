@@ -23,3 +23,37 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+  labels:
+    app: api-gateway
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: api-gateway
+    
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-gateway-ingress
+  annotations:
+     kubernetes.io/ingress.class: "nginx-internal"
+spec:
+  tls:
+  - hosts:
+    - api-gateway.dev.cs.west.us.mckesson.com
+    secretName: ingress-platform-tls
+  rules:
+  - host: api-gateway.cs.west.us.mckesson.com
+    http:
+      paths:
+      - backend:
+          serviceName: api-gateway
+          servicePort: 80

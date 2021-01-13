@@ -5,7 +5,7 @@ metadata:
   labels:
     app: api-gateway
   name: api-gateway
-  namespace: p2pcloudops-dev
+  namespace: temp-no-quota-ns
 spec:
   replicas: 1
   selector:
